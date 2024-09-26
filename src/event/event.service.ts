@@ -12,7 +12,15 @@ export class EventService {
     }
 
     findAll() {
-        return this.eventModel.findAll({ include: { all: true } });
+        return this.eventModel.findAll({
+            include: [
+                {
+                    association: "tickets",
+                    where: { statusId: 1 },
+                    required: false,
+                },
+            ],
+        });
     }
 
     findOne(id: number) {

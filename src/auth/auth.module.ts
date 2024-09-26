@@ -8,7 +8,7 @@ import { UsersModule } from "src/users/users.module";
     imports: [
         JwtModule.register({
             global: true,
-            secret: "MysecretKey",
+            secret: "MySecretKey",
             signOptions: { expiresIn: "1h" },
         }),
         UsersModule,

@@ -5,7 +5,7 @@ import { SequelizeModule } from "@nestjs/sequelize";
 import { Users } from "./models/users.model";
 import { UsersRoles } from "./models/users-role.model";
 import { Roles } from "src/roles/models/roles.model";
-import { RolesModule } from "src/roles/roles.module"; 
+import { RolesModule } from "src/roles/roles.module";
 
 @Module({
     imports: [
@@ -13,7 +13,7 @@ import { RolesModule } from "src/roles/roles.module";
         RolesModule, // import qilingan modulni ishlatish
     ],
     controllers: [UsersController],
-  providers: [UsersService],
-    exports:[UsersService],
+    providers: [UsersService],
+    exports: [UsersService],
 })
 export class UsersModule {}
