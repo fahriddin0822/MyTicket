@@ -7,12 +7,12 @@ import { UpdateLanguageDto } from './dto/update-language.dto';
 export class LanguageController {
   constructor(private readonly languageService: LanguageService) {}
 
-  @Post()
+  @Post('create')
   create(@Body() createLanguageDto: CreateLanguageDto) {
     return this.languageService.create(createLanguageDto);
   }
 
-  @Get()
+  @Get('all')
   findAll() {
     return this.languageService.findAll();
   }

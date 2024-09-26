@@ -7,12 +7,12 @@ import { UpdateEventTypeDto } from './dto/update-event_type.dto';
 export class EventTypeController {
   constructor(private readonly eventTypeService: EventTypeService) {}
 
-  @Post()
+  @Post("create")
   create(@Body() createEventTypeDto: CreateEventTypeDto) {
     return this.eventTypeService.create(createEventTypeDto);
   }
 
-  @Get()
+  @Get("all")
   findAll() {
     return this.eventTypeService.findAll();
   }

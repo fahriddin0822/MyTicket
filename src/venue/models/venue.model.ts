@@ -12,6 +12,7 @@ import { District } from "src/district/models/district.model";
 import { Event } from "src/event/models/event.model";
 import { Region } from "src/region/models/region.model";
 import { Seat } from "src/seat/models/seat.model";
+import { Ticket } from "src/ticket/models/ticket.model";
 import { VenuePhoto } from "src/venue_photo/models/venue_photo.model";
 import { VenueType } from "src/venue_type/models/venue_type.model";
 import { VenueVenueType } from "src/venue_venue_type/models/venue_venue_type.model";
@@ -30,7 +31,7 @@ interface IVenueCreationAttr {
 
 @Table({ tableName: "venue" })
 export class Venue extends Model<Venue, IVenueCreationAttr> {
-    @Column({ primaryKey: true, autoIncrement: true, type: DataType.INTEGER })
+    @Column({ type: DataType.INTEGER, autoIncrement: true, primaryKey: true })
     id: number;
 
     @Column({ type: DataType.STRING })
@@ -80,6 +81,9 @@ export class Venue extends Model<Venue, IVenueCreationAttr> {
     @BelongsToMany(() => VenueType, () => VenueVenueType)
     venue_types: VenueType[];
 
-    // @HasMany(() => Event)
-    // events: Event[];
+    @HasMany(() => Event)
+    events: Event[];
+
+    // @HasMany(() => Ticket)
+    // tickets: Ticket;
 }

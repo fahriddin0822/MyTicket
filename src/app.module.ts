@@ -31,9 +31,23 @@ import { EventTypeModule } from './event_type/event_type.module';
 import { LanguageModule } from './language/language.module';
 import { AuthModule } from './auth/auth.module';
 import { EventType } from "./event_type/models/event_type.model";
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { join } from "path";
+import { Customer } from "./customer/models/customer.model";
+import { Ticket } from "./ticket/models/ticket.model";
+import { CountryModule } from './country/country.module';
+import { Booking } from "./booking/models/booking.model";
+import { Cart } from "./cart/models/cart.models";
+import { Country } from "./country/models/country.model";
+import { CustomerAddress } from "./customer_address/models/customer_address.model";
+import { CustomerCard } from "./customer_card/models/customer_card.model";
+import { Language } from "./language/models/language.model";
 
 @Module({
     imports: [
+        ServeStaticModule.forRoot({
+            rootPath:join(__dirname, "static")
+        }),
         ConfigModule.forRoot({ envFilePath: ".env", isGlobal: true }),
         SequelizeModule.forRoot({
             dialect: "postgres",
@@ -56,7 +70,16 @@ import { EventType } from "./event_type/models/event_type.model";
                 Users,
                 UsersRoles,
                 Event,
-                EventType
+                EventType,
+                Customer,
+                Ticket,
+                Booking,
+                Cart,
+                Country,
+                CustomerAddress,
+                CustomerCard,
+                Language,
+                
             ],
             autoLoadModels: true,
             sync: { alter: true },
@@ -79,6 +102,7 @@ import { EventType } from "./event_type/models/event_type.model";
         EventTypeModule,
         LanguageModule,
         AuthModule,
+        CountryModule,
     ],
     controllers: [],
     providers: [],

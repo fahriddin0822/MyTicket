@@ -3,7 +3,7 @@ import { Event } from "src/event/models/event.model";
 
 interface IEventType {
     name: string;
-    parentEventTypeId: number;
+    parentEventTypeId?: number;
 }
 
 @Table({ tableName: "event-type" })
@@ -26,8 +26,8 @@ export class EventType extends Model<EventType, IEventType> {
         type: DataType.INTEGER,
         allowNull: true,
     })
-    parentEventTypeId: number;
+    parentEventTypeId?: number;
 
-    // @HasMany(() => Event)
-    // events: Event[];
+    @HasMany(() => Event)
+    events: Event[];
 }

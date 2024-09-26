@@ -6,7 +6,7 @@ interface IRegionCreationAttributes {
     name: string;
 }
 
-@Table({ tableName: "region", timestamps: true })
+@Table({ tableName: "region", timestamps: false })
 export class Region extends Model<Region, IRegionCreationAttributes> {
     @Column({
         type: DataType.INTEGER,

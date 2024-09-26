@@ -10,6 +10,7 @@ interface HumanCategoryAttr {
 
 @Table({
     tableName: "human_category",
+    timestamps:false
 })
 export class HumanCategory extends Model<HumanCategory, HumanCategoryAttr> {
     @Column({
@@ -41,6 +42,6 @@ export class HumanCategory extends Model<HumanCategory, HumanCategoryAttr> {
     })
     gender: number;
 
-    // @HasMany(() => Event)
-    // events: Event[];
+    @HasMany(() => Event)
+    events: Event[];
 }

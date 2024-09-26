@@ -13,7 +13,7 @@ interface IVenueTypeCreationAttr {
     name: string;
 }
 
-@Table({ tableName: "venue_type" })
+@Table({ tableName: "venue_type", timestamps: false })
 export class VenueType extends Model<VenueType, IVenueTypeCreationAttr> {
     @Column({
         type: DataType.INTEGER,

@@ -3,11 +3,14 @@ import {
     Column,
     DataType,
     ForeignKey,
+    HasMany,
     Model,
     Table,
 } from "sequelize-typescript";
 import { EventType } from "src/event_type/models/event_type.model";
 import { HumanCategory } from "src/human-category/models/human_category.model";
+import { Language } from "src/language/models/language.model";
+import { Ticket } from "src/ticket/models/ticket.model";
 import { Venue } from "src/venue/models/venue.model";
 
 interface IEventCreationAttr {
@@ -76,43 +79,48 @@ export class Event extends Model<Event, IEventCreationAttr> {
     })
     info: string;
 
-    // @ForeignKey(() => EventType)
+    @ForeignKey(() => EventType)
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
     })
     eventTypeId: number;
-    // @BelongsTo(() => EventType)
-    // event_type: EventType;
+    @BelongsTo(() => EventType)
+    event_type: EventType;
 
-    // @ForeignKey(()=>HumanCategory)
+    @ForeignKey(() => HumanCategory)
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
     })
     humanCategoryId: number;
-    // @BelongsTo(() => HumanCategory)
-    // human_category: HumanCategory;
+    @BelongsTo(() => HumanCategory)
+    human_category: HumanCategory;
 
-    // @ForeignKey(()=>Venue)
+    @ForeignKey(() => Venue)
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
     })
     venueId: number;
-    // @BelongsTo(() => Venue)
-    // venue: Venue;
+    @BelongsTo(() => Venue)
+    venue: Venue;
 
-
+    @ForeignKey(() => Language)
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
     })
     langId: number;
+    @BelongsTo(() => Language)
+    language: Language;
 
     @Column({
         type: DataType.DATEONLY,
         allowNull: false,
     })
     releaseDate: string;
+
+    @HasMany(() => Ticket)
+    tickets: Ticket[];
 }
