@@ -1,30 +1,51 @@
-import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { InjectModel } from '@nestjs/sequelize';
-import { Users } from './models/users.model';
+import { BadRequestException, Injectable } from "@nestjs/common";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { InjectModel } from "@nestjs/sequelize";
+import { Users } from "./models/users.model";
+import { RolesService } from "src/roles/roles.service";
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(Users) private users_model: typeof Users){}
+    constructor(
+        @InjectModel(Users) private usersModel: typeof Users,
+        private readonly rolesServise: RolesService
+    ) {}
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
+    async create(createUserDto: CreateUserDto) {
+        const newUser = await this.usersModel.create(createUserDto);
+        const role = await this.rolesServise.findRoleByValue(
+            createUserDto.role_value
+        );
 
-  findAll() {
-    return `This action returns all users`;
-  }
+        if (!role) {
+            throw new BadRequestException("Role not found");
+        }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
+        await newUser.$set("roles", [role.id]);
+        await newUser.save();
+        newUser.roles = [role];
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
+        return newUser;
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
+    findAll() {
+        return this.usersModel.findAll({ include: { all: true } });
+    }
+
+    findUserByEmail(email: string) {
+        return this.usersModel.findOne({ where: { email } });
+    }
+
+    findOne(id: number) {
+        return `This action returns a #${id} user`;
+    }
+
+    update(id: number, updateUserDto: UpdateUserDto) {
+        return `This action updates a #${id} user`;
+    }
+
+    remove(id: number) {
+        return `This action removes a #${id} user`;
+    }
 }

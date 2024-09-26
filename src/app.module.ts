@@ -25,7 +25,12 @@ import { Roles } from "./roles/models/roles.model";
 import { UsersModule } from './users/users.module';
 import { Users } from "./users/models/users.model";
 import { UsersRoles } from "./users/models/users-role.model";
-import { Event } from "./event/entities/event.entity";
+import { Event } from "./event/models/event.model";
+import { TicketModule } from './ticket/ticket.module';
+import { EventTypeModule } from './event_type/event_type.module';
+import { LanguageModule } from './language/language.module';
+import { AuthModule } from './auth/auth.module';
+import { EventType } from "./event_type/models/event_type.model";
 
 @Module({
     imports: [
@@ -47,10 +52,11 @@ import { Event } from "./event/entities/event.entity";
                 Seat,
                 VenueVenueType,
                 VenueType,
-                // Roles,
-                // Users,
-                // UsersRoles,
-                // Event
+                Roles,
+                Users,
+                UsersRoles,
+                Event,
+                EventType
             ],
             autoLoadModels: true,
             sync: { alter: true },
@@ -60,15 +66,19 @@ import { Event } from "./event/entities/event.entity";
         HumanCategoryModule,
         VenueModule,
         VenuePhotoModule,
-        // EventModule,
+        EventModule,
         RegionModule,
         SeatTypeModule,
         VenueTypeModule,
         DistrictModule,
         SeatModule,
         VenueVenueTypeModule,
-        // RolesModule,
-        // UsersModule,
+        TicketModule,
+        RolesModule,
+        UsersModule,
+        EventTypeModule,
+        LanguageModule,
+        AuthModule,
     ],
     controllers: [],
     providers: [],

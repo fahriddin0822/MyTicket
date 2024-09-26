@@ -9,7 +9,11 @@ interface IRolesCreationAttr {
 
 @Table({ tableName: "roles", timestamps: false })
 export class Roles extends Model<Roles, IRolesCreationAttr> {
-    @Column({ primaryKey: true, autoIncrement: true, type: DataType.INTEGER })
+    @Column({
+        primaryKey: true,
+        autoIncrement: true,
+        type: DataType.INTEGER
+    })
     id: number;
 
     @Column({

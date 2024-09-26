@@ -9,6 +9,7 @@ import {
     Table,
 } from "sequelize-typescript";
 import { District } from "src/district/models/district.model";
+import { Event } from "src/event/models/event.model";
 import { Region } from "src/region/models/region.model";
 import { Seat } from "src/seat/models/seat.model";
 import { VenuePhoto } from "src/venue_photo/models/venue_photo.model";
@@ -22,7 +23,7 @@ interface IVenueCreationAttr {
     site: string;
     phone: string;
     venueTypeId: number;
-    schema: string;
+    schema: string[];
     regionId: number;
     districtId: number;
 }
@@ -50,8 +51,8 @@ export class Venue extends Model<Venue, IVenueCreationAttr> {
     @Column({ type: DataType.INTEGER })
     venueTypeId: number;
 
-    @Column({ type: DataType.STRING })
-    schema: string;
+    @Column({ type: DataType.ARRAY(DataType.STRING) })
+    schema: string[];
 
     @ForeignKey(() => Region)
     @Column({ type: DataType.INTEGER })
@@ -78,4 +79,7 @@ export class Venue extends Model<Venue, IVenueCreationAttr> {
 
     @BelongsToMany(() => VenueType, () => VenueVenueType)
     venue_types: VenueType[];
+
+    // @HasMany(() => Event)
+    // events: Event[];
 }

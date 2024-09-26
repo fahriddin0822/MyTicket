@@ -5,7 +5,7 @@ export class CreateVenueDto {
     site: string;
     phone: string;
     venueTypeId: number;
-    schema: string;
+    schema: string[];
     regionId: number;
     districtId: number;
 }

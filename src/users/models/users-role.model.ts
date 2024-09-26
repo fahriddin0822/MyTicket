@@ -13,12 +13,12 @@ interface IUserRolesCreationAttr {
     roleId: number;
 }
 
-@Table({ tableName: "users" })
+@Table({ tableName: "users_roles" })
 export class UsersRoles extends Model<UsersRoles, IUserRolesCreationAttr> {
 
     @ForeignKey(() => Users)
     @Column({ type: DataType.INTEGER })
-    userId: number;
+    userId: number; 
 
     @ForeignKey(() => Roles)
     @Column({ type: DataType.INTEGER })
