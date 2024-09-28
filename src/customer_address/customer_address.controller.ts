@@ -7,12 +7,12 @@ import { UpdateCustomerAddressDto } from './dto/update-customer_address.dto';
 export class CustomerAddressController {
   constructor(private readonly customerAddressService: CustomerAddressService) {}
 
-  @Post()
+  @Post("create")
   create(@Body() createCustomerAddressDto: CreateCustomerAddressDto) {
     return this.customerAddressService.create(createCustomerAddressDto);
   }
 
-  @Get()
+  @Get('all')
   findAll() {
     return this.customerAddressService.findAll();
   }

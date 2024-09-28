@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
-    constructor(private readonly jwtService:JwtService){}
+    constructor(private readonly jwtService: JwtService) {}
     canActivate(
         context: ExecutionContext
     ): boolean | Promise<boolean> | Observable<boolean> {
@@ -32,17 +32,16 @@ export class JwtAuthGuard implements CanActivate {
 
         let payload: any;
         try {
-            payload = this.jwtService.verify(token)
+            payload = this.jwtService.verify(token);
         } catch (error) {
             throw new UnauthorizedException({
                 message: "Token verifikatsiyadan o'tmadi.",
-                error
+                error,
             });
-            
         }
         req.users = payload;
         console.log(req);
-        
+
         //logic
         return true;
     }

@@ -1,15 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCustomerAddressDto } from './dto/create-customer_address.dto';
 import { UpdateCustomerAddressDto } from './dto/update-customer_address.dto';
+import { InjectModel } from '@nestjs/sequelize';
+import { CustomerAddress } from './models/customer_address.model';
 
 @Injectable()
 export class CustomerAddressService {
+  constructor(@InjectModel(CustomerAddress) private customerAddress: typeof CustomerAddress){}
   create(createCustomerAddressDto: CreateCustomerAddressDto) {
-    return 'This action adds a new customerAddress';
+    return this.customerAddress.create(createCustomerAddressDto);
   }
 
   findAll() {
-    return `This action returns all customerAddress`;
+    return this.customerAddress.findAll({ include:{all:true}});
   }
 
   findOne(id: number) {

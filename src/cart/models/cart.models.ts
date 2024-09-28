@@ -8,9 +8,9 @@ import {
     Model,
     Table,
 } from "sequelize-typescript";
-import { Booking } from "src/booking/models/booking.model";
-import { Customer } from "src/customer/models/customer.model";
-import { Ticket } from "src/ticket/models/ticket.model";
+import { Booking } from "../../booking/models/booking.model";
+import { Customer } from "../../customer/models/customer.model";
+import { Ticket } from "../../ticket/models/ticket.model";
 
 interface ICartCreationAttr {
     ticketId: number;

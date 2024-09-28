@@ -6,7 +6,7 @@ import {
     Model,
     Table,
 } from "sequelize-typescript";
-import { Cart } from "src/cart/models/cart.models";
+import { Cart } from "../../cart/models/cart.models";
 
 interface IBookingCreationAttr {
     cartId: number;

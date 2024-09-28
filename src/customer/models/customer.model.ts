@@ -1,6 +1,6 @@
 import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
-import { Cart } from "src/cart/models/cart.models";
-import { CustomerCard } from "src/customer_card/models/customer_card.model";
+import { Cart } from "../../cart/models/cart.models";
+import { CustomerCard } from "../../customer_card/models/customer_card.model";
 
 interface ICustomerCreationAttr {
     first_name: string;

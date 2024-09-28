@@ -3,7 +3,8 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { InjectModel } from "@nestjs/sequelize";
 import { Users } from "./models/users.model";
-import { RolesService } from "src/roles/roles.service";
+import { RolesService } from "../roles/roles.service";
+import { AddRemoveRoleDto } from "./dto/add-remove-role.dto";
 
 @Injectable()
 export class UsersService {
@@ -38,7 +39,7 @@ export class UsersService {
     }
 
     findOne(id: number) {
-        return `This action returns a #${id} user`;
+        return this.usersModel.findOne({ where: { id } });
     }
 
     update(id: number, updateUserDto: UpdateUserDto) {
@@ -46,6 +47,13 @@ export class UsersService {
     }
 
     remove(id: number) {
-        return `This action removes a #${id} user`;
+        return { message: `This action removes a user` };
+    }
+
+    async addRole(addRemoveRoleDto: AddRemoveRoleDto) {
+        const user = await this.usersModel.findByPk(addRemoveRoleDto.userId);
+        const role = await this.rolesServise.findRoleByValue(
+            addRemoveRoleDto.role_value
+        );
     }
 }

@@ -7,12 +7,12 @@ import { UpdateCustomerCardDto } from './dto/update-customer_card.dto';
 export class CustomerCardController {
   constructor(private readonly customerCardService: CustomerCardService) {}
 
-  @Post()
+  @Post('create')
   create(@Body() createCustomerCardDto: CreateCustomerCardDto) {
     return this.customerCardService.create(createCustomerCardDto);
   }
 
-  @Get()
+  @Get('all')
   findAll() {
     return this.customerCardService.findAll();
   }

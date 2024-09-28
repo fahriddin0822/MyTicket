@@ -1,6 +1,6 @@
 import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
-import { District } from "src/district/models/district.model";
-import { Venue } from "src/venue/models/venue.model";
+import { District } from "../../district/models/district.model";
+import { Venue } from "../../venue/models/venue.model";
 
 interface IRegionCreationAttributes {
     name: string;

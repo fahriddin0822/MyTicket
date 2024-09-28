@@ -1,7 +1,7 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasOne, Model, Table } from "sequelize-typescript";
-import { Cart } from "src/cart/models/cart.models";
-import { Event } from "src/event/models/event.model";
-import { Seat } from "src/seat/models/seat.model";
+import { Cart } from "../../cart/models/cart.models";
+import { Event } from "../../event/models/event.model";
+import { Seat } from "../../seat/models/seat.model";
 
 interface ITiketCreationAttr {
     eventId: number;

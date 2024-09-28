@@ -1,8 +1,6 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import { CreateUserDto } from "src/users/dto/create-user.dto";
-import { JwtService } from "@nestjs/jwt";
-import { Users } from "src/users/models/users.model";
+import { CreateUserDto } from "../users/dto/create-user.dto";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { SignInDto } from "./dto/signIn.dto";
 
