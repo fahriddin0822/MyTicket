@@ -28,8 +28,8 @@ export class AuthService {
             password: hashedPassword,
         });
 
-        // return this.generateToken(newUser);
-        return newUser;
+        return this.generateToken(newUser);
+        // return newUser;
     }
 
     async signIn(signInDto: SignInDto) {
