@@ -31,7 +31,7 @@ import { EventTypeModule } from './event_type/event_type.module';
 import { LanguageModule } from './language/language.module';
 import { AuthModule } from './auth/auth.module';
 import { EventType } from "./event_type/models/event_type.model";
-import { ServeStaticModule } from "@nestjs/serve-static";
+// import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 import { Customer } from "./customer/models/customer.model";
 import { Ticket } from "./ticket/models/ticket.model";
@@ -45,9 +45,9 @@ import { Language } from "./language/models/language.model";
 
 @Module({
     imports: [
-        ServeStaticModule.forRoot({
-            rootPath:join(__dirname, "static")
-        }),
+        // ServeStaticModule.forRoot({
+        //     rootPath:join(__dirname, "static")
+        // }),
         ConfigModule.forRoot({ envFilePath: ".env", isGlobal: true }),
         SequelizeModule.forRoot({
             dialect: "postgres",

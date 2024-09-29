@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { CreateUserDto } from "../users/dto/create-user.dto";
 import { UsersService } from "../users/users.service";
-import * as bcrypt from "bcrypt";
 import { JwtService } from "@nestjs/jwt";
 import { Users } from "../users/models/users.model";
+import * as bcrypt from "bcryptjs";
 import { SignInDto } from "./dto/signIn.dto";
 
 @Injectable()
@@ -28,11 +28,14 @@ export class AuthService {
             password: hashedPassword,
         });
 
-        return this.generateToken(newUser);
+        // return this.generateToken(newUser);
+        return newUser;
     }
 
     async signIn(signInDto: SignInDto) {
         const user = await this.userService.findUserByEmail(signInDto.email);
+        console.log(user.password);
+        
         if (!user) {
             throw new UnauthorizedException("User not found")
         }
@@ -40,7 +43,6 @@ export class AuthService {
         const validPassword = await bcrypt.compare(signInDto.password, user.password);
         if (!validPassword) {
             throw new UnauthorizedException("User not found");
-            
         }
         return this.generateToken(user);
     }

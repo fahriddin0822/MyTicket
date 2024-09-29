@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["node", "@types/estree", "jest"],
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
